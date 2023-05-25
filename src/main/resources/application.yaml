@@ -12,7 +12,7 @@ spring:
     show-sql: true
     open-in-view: false
 
-# validate db by model
+    # validate db by model
     hibernate:
       ddl-auto: validate
 
@@ -25,6 +25,8 @@ spring:
         jdbc.batch_size: 20
   datasource:
     url: jdbc:postgresql://localhost:5432/jira
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   liquibase:
     changeLog: "classpath:db/changelog.sql"
@@ -47,38 +49,24 @@ spring:
       client:
         registration:
           github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
             scope:
               - email
           google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
             scope:
               - email
               - profile
-          vk:
-            client-name: Vkontakte
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            client-authentication-method: client_secret_post
-            authorization-grant-type: authorization_code
-            scope: email
-          yandex:
-            client-name: Yandex
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            authorization-grant-type: authorization_code
           gitlab:
+            client-id: ${GITLAB_CLIENT_ID}
+            client-secret: ${GITLAB_CLIENT_SECRET}
             client-name: GitLab
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             authorization-grant-type: authorization_code
             scope: read_user
         provider:
-          vk:
-            authorization-uri: https://oauth.vk.com/authorize
-            token-uri: https://oauth.vk.com/access_token
-            user-info-uri: https://api.vk.com/method/users.get?v=8.1
-            user-name-attribute: response
-          yandex:
-            authorization-uri: https://oauth.yandex.ru/authorize
-            token-uri: https://oauth.yandex.ru/token
-            user-info-uri: https://login.yandex.ru/info
-            user-name-attribute: login
           gitlab:
             authorization-uri: https://gitlab.com/oauth/authorize
             token-uri: https://gitlab.com/oauth/token
@@ -97,6 +85,8 @@ spring:
             enable: true
           auth: true
     host: smtp.gmail.com
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     port: 587
   thymeleaf.check-template-location: false
 
@@ -108,7 +98,7 @@ logging:
     org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
 
 server:
-#  https://springdoc.org/index.html#how-can-i-deploy-springdoc-openapi-ui-behind-a-reverse-proxy
+  #  https://springdoc.org/index.html#how-can-i-deploy-springdoc-openapi-ui-behind-a-reverse-proxy
   forward-headers-strategy: framework
   servlet:
     encoding:
