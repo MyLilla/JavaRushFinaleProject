@@ -2,7 +2,6 @@ package com.javarush.jira.profile.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javarush.jira.AbstractControllerTest;
-import com.javarush.jira.profile.ProfileTo;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
