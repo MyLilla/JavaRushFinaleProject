@@ -1,10 +1,8 @@
 package com.javarush.jira.bugtracking.internal.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.javarush.jira.common.model.TitleEntity;
 import com.javarush.jira.common.util.validation.Code;
 import com.javarush.jira.common.util.validation.Description;
-import io.swagger.annotations.ApiModelProperty;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
@@ -45,16 +43,13 @@ public class Task extends TitleEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false)
-    @ApiModelProperty(hidden = true)
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sprint_id")
-    @ApiModelProperty(hidden = true)
     private Sprint sprint;
 
     @Column(name = "updated")
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime updated;
 
     @Column(name = "estimate")
@@ -72,13 +67,11 @@ public class Task extends TitleEntity {
     private Set<@Size(min = 2, max = 32) String> tags = Set.of();
 
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
-    @ApiModelProperty(hidden = true)
     private List<Activity> activities;
 
     @Nullable
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ApiModelProperty(hidden = true)
     private Task parent;
 }
