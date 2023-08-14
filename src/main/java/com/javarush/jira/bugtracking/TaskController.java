@@ -17,13 +17,12 @@ import java.util.List;
 @RequestMapping(TaskController.REST_URL)
 public class TaskController {
 
+    public static final String REST_URL = "/api/tasks";
     @Autowired
     private TaskService taskService;
-    public static final String REST_URL = "/api/tasks";
 
     @GetMapping
     public List<Task> getAll(@AuthenticationPrincipal AuthUser authUser) {
-        log.info("get all for user: {}", authUser.id());
         return taskService.getAllForUser(authUser.id());
     }
 
