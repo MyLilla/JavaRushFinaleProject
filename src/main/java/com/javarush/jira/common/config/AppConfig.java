@@ -7,16 +7,21 @@ import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule
 import com.javarush.jira.common.util.JsonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.http.ProblemDetail;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import javax.sql.DataSource;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
@@ -65,4 +70,19 @@ public class AppConfig {
         objectMapper.addMixIn(ProblemDetail.class, MixIn.class);
         JsonUtil.setMapper(objectMapper);
     }
+//    @Bean
+//    @Profile("test")
+//    public DataSource dataSourceH2() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        return dataSource;
+//    }
+//
+//    @Bean
+//    @Profile("test")
+//    LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+//        LocalContainerEntityManagerFactoryBean lfb = new LocalContainerEntityManagerFactoryBean();
+//        lfb.setDataSource(dataSourceH2());
+//        lfb.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+//        return lfb;
+//    }
 }
