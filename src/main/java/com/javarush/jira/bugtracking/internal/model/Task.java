@@ -1,6 +1,5 @@
 package com.javarush.jira.bugtracking.internal.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.javarush.jira.common.model.TitleEntity;
 import com.javarush.jira.common.util.validation.Code;
 import com.javarush.jira.common.util.validation.Description;
@@ -51,7 +50,6 @@ public class Task extends TitleEntity {
     private Sprint sprint;
 
     @Column(name = "updated")
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime updated;
 
     @Column(name = "estimate")

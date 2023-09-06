@@ -2,6 +2,7 @@ package com.javarush.jira.bugtracking.to;
 
 import com.javarush.jira.common.util.validation.Code;
 import com.javarush.jira.common.util.validation.NoHtml;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,12 +29,15 @@ public class TaskTo extends NodeTo<TaskTo> {
     String description;
 
     @NotNull
+    @Hidden
     SprintTo sprint;
 
     @NotNull
+    @Hidden
     ProjectTo project;
 
     @Nullable
+    @Hidden
     LocalDateTime updated;
 
     @Code
@@ -47,6 +51,7 @@ public class TaskTo extends NodeTo<TaskTo> {
 
     Set<String> tags;
 
+    @Hidden
     List<ActivityTo> activities;
 
     public TaskTo(Long id, String title, boolean enabled, String typeCode, String statusCode, String description, SprintTo sprint,
